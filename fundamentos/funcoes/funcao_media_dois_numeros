@@ -1,0 +1,41 @@
+/*
+ * Exercício: Média de Dois Números
+ * Tema: Funções
+ *
+ * Objetivo:
+ * Criar uma função que calcule a média aritmética
+ * de dois números informados pelo usuário.
+ *
+ * Conceitos praticados:
+ * - Funções
+ * - Parâmetros
+ * - Retorno de valores
+ * - Operações matemáticas
+ */
+
+#include <stdio.h>
+
+/*
+ * Calcula e retorna a média de dois números.
+ */
+float calcularMedia(float num1, float num2) {
+    return (num1 + num2) / 2.0;
+}
+
+int main() {
+
+    float a, b;
+    float media;
+
+    printf("Digite o primeiro valor: ");
+    scanf("%f", &a);
+
+    printf("Digite o segundo valor: ");
+    scanf("%f", &b);
+
+    media = calcularMedia(a, b);
+
+    printf("\nMedia: %.2f\n", media);
+
+    return 0;
+}
