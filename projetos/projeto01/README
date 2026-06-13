@@ -1,0 +1,38 @@
+# Diário de Classe
+
+Sistema de gerenciamento de alunos desenvolvido em C para fins acadêmicos.
+
+## Funcionalidades
+
+* Cadastro de alunos
+* Registro de duas notas por aluno
+* Cálculo automático da média
+* Verificação de aprovação e reprovação
+* Listagem de alunos cadastrados
+* Edição de registros
+* Salvamento de relatório em arquivo TXT
+* Carregamento automático dos dados salvos
+
+## Conceitos Utilizados
+
+* Structs
+* Vetores
+* Funções
+* Manipulação de Strings
+* Arquivos (FILE)
+* Modularização
+* Menus Interativos
+
+## Estrutura dos Dados
+
+Cada aluno possui:
+
+* Nome
+* Nota 1
+* Nota 2
+* Média
+* Resultado (Aprovado/Reprovado)
+
+## Objetivo
+
+Praticar conceitos fundamentais da linguagem C através da construção de um sistema simples de gerenciamento acadêmico.
