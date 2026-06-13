@@ -1,0 +1,60 @@
+/*
+ * Exercício: Preenchimento e Exibição de Matriz 3x3
+ * Tema: Matrizes
+ *
+ * Objetivo:
+ * Demonstrar como declarar uma matriz,
+ * armazenar valores em suas posições
+ * e acessar seus elementos através dos índices.
+ *
+ * Conceitos praticados:
+ * - Matrizes bidimensionais
+ * - Índices de linha e coluna
+ * - Atribuição de valores
+ * - Acesso aos elementos
+ * - Saída de dados
+ */
+
+#include <stdio.h>
+
+int main() {
+
+    // Declaração de uma matriz 3x3
+    int matriz[3][3];
+
+    // Preenchimento manual da matriz
+    matriz[0][0] = 1;
+    matriz[0][1] = 2;
+    matriz[0][2] = 3;
+
+    matriz[1][0] = 4;
+    matriz[1][1] = 5;
+    matriz[1][2] = 6;
+
+    matriz[2][0] = 7;
+    matriz[2][1] = 8;
+    matriz[2][2] = 9;
+
+    // Exibição da primeira linha
+    printf("Primeira linha:\n");
+    printf("%d %d %d\n\n",
+           matriz[0][0],
+           matriz[0][1],
+           matriz[0][2]);
+
+    // Exibição da segunda linha
+    printf("Segunda linha:\n");
+    printf("%d %d %d\n\n",
+           matriz[1][0],
+           matriz[1][1],
+           matriz[1][2]);
+
+    // Exibição da terceira linha
+    printf("Terceira linha:\n");
+    printf("%d %d %d\n",
+           matriz[2][0],
+           matriz[2][1],
+           matriz[2][2]);
+
+    return 0;
+}
