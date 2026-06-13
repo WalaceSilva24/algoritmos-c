@@ -1,0 +1,32 @@
+/*
+ * Exercício: Modificando Valores com Ponteiros
+ * Tema: Ponteiros
+ *
+ * Objetivo:
+ * Demonstrar como alterar o valor de uma variável
+ * utilizando um ponteiro.
+ *
+ * Conceitos praticados:
+ * - Ponteiros
+ * - Indireção
+ * - Manipulação de memória
+ */
+
+#include <stdio.h>
+
+int main() {
+
+    int idade = 20;
+
+    // Ponteiro apontando para a variável idade
+    int *p = &idade;
+
+    printf("Valor inicial da idade: %d\n", idade);
+
+    // Modifica a variável através do ponteiro
+    *p = 25;
+
+    printf("Valor apos modificacao: %d\n", idade);
+
+    return 0;
+}
