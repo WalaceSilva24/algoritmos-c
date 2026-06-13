@@ -1,0 +1,59 @@
+/*
+ * Exercício: Sequência de Fibonacci
+ * Tema: Recursão
+ *
+ * Objetivo:
+ * Calcular termos da sequência de Fibonacci
+ * utilizando uma função recursiva.
+ *
+ * Conceitos praticados:
+ * - Recursão
+ * - Múltiplas chamadas recursivas
+ * - Caso base
+ *
+ * Exemplo:
+ * 0 1 1 2 3 5 8 13 ...
+ */
+
+#include <stdio.h>
+
+/*
+ * Retorna o n-ésimo termo da sequência de Fibonacci.
+ *
+ * Casos base:
+ * F(0) = 0
+ * F(1) = 1
+ *
+ * Caso recursivo:
+ * F(n) = F(n-1) + F(n-2)
+ */
+int fibonacci(int n) {
+
+    if (n == 0) {
+        return 0;
+    }
+
+    if (n == 1) {
+        return 1;
+    }
+
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+int main() {
+
+    int termos;
+
+    printf("Quantos termos deseja visualizar? ");
+    scanf("%d", &termos);
+
+    printf("\nSequencia de Fibonacci:\n");
+
+    for (int i = 0; i < termos; i++) {
+        printf("%d ", fibonacci(i));
+    }
+
+    printf("\n");
+
+    return 0;
+}
