@@ -1,0 +1,53 @@
+/*
+ * Exercício: Cadastro de Pessoas
+ * Tema: Structs
+ *
+ * Objetivo:
+ * Armazenar dados de várias pessoas utilizando
+ * um vetor de estruturas.
+ *
+ * Conceitos praticados:
+ * - Structs
+ * - Vetores
+ * - Laços de repetição
+ * - Cadastro de registros
+ */
+
+#include <stdio.h>
+
+#define TAM_NOME 50
+#define TOTAL_PESSOAS 3
+
+typedef struct {
+
+    char nome[TAM_NOME];
+    int idade;
+
+} Pessoa;
+
+int main() {
+
+    Pessoa pessoas[TOTAL_PESSOAS];
+
+    for (int i = 0; i < TOTAL_PESSOAS; i++) {
+
+        printf("\nPessoa %d\n", i + 1);
+
+        printf("Nome: ");
+        scanf("%49s", pessoas[i].nome);
+
+        printf("Idade: ");
+        scanf("%d", &pessoas[i].idade);
+    }
+
+    printf("\n=== Pessoas Cadastradas ===\n");
+
+    for (int i = 0; i < TOTAL_PESSOAS; i++) {
+
+        printf("\nPessoa %d\n", i + 1);
+        printf("Nome: %s\n", pessoas[i].nome);
+        printf("Idade: %d\n", pessoas[i].idade);
+    }
+
+    return 0;
+}
