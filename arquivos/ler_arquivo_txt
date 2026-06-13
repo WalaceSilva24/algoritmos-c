@@ -1,0 +1,38 @@
+/*
+ * Exercício: Leitura de Arquivo TXT
+ * Tema: Arquivos
+ *
+ * Objetivo:
+ * Ler e exibir o conteúdo de um arquivo texto.
+ *
+ * Conceitos praticados:
+ * - fopen()
+ * - fgets()
+ * - fclose()
+ * - Leitura de arquivos
+ */
+
+#include <stdio.h>
+
+int main() {
+
+    FILE *arquivo;
+    char linha[100];
+
+    arquivo = fopen("mensagem.txt", "r");
+
+    if (arquivo == NULL) {
+        printf("Arquivo nao encontrado.\n");
+        return 1;
+    }
+
+    printf("Conteudo do arquivo:\n\n");
+
+    while (fgets(linha, sizeof(linha), arquivo) != NULL) {
+        printf("%s", linha);
+    }
+
+    fclose(arquivo);
+
+    return 0;
+}
