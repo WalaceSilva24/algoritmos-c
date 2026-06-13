@@ -1,0 +1,44 @@
+/*
+ * Exercício: Troca de Valores com Ponteiros
+ * Tema: Ponteiros
+ *
+ * Objetivo:
+ * Trocar os valores de duas variáveis
+ * utilizando uma função e ponteiros.
+ *
+ * Conceitos praticados:
+ * - Ponteiros
+ * - Passagem por referência
+ * - Funções
+ */
+
+#include <stdio.h>
+
+/*
+ * Troca os valores de duas variáveis.
+ */
+void trocar(int *a, int *b) {
+
+    int temp = *a;
+
+    *a = *b;
+    *b = temp;
+}
+
+int main() {
+
+    int x = 10;
+    int y = 20;
+
+    printf("Antes da troca:\n");
+    printf("x = %d\n", x);
+    printf("y = %d\n", y);
+
+    trocar(&x, &y);
+
+    printf("\nDepois da troca:\n");
+    printf("x = %d\n", x);
+    printf("y = %d\n", y);
+
+    return 0;
+}
