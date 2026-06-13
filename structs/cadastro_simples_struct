@@ -1,0 +1,70 @@
+/*
+ * Exercício: Cadastro Simples com Struct
+ * Tema: Structs
+ *
+ * Objetivo:
+ * Demonstrar a criação de uma estrutura,
+ * a manipulação de seus campos e a leitura
+ * de dados informados pelo usuário.
+ *
+ * Conceitos praticados:
+ * - Structs
+ * - Typedef
+ * - Strings
+ * - Entrada e saída de dados
+ * - Manipulação de campos
+ */
+
+#include <stdio.h>
+#include <string.h>
+
+#define TAM 50
+
+/*
+ * Estrutura que representa uma pessoa.
+ */
+typedef struct {
+
+    int idade;
+    float peso;
+    char nome[TAM];
+
+} Pessoa;
+
+int main() {
+
+    // Criação e inicialização da estrutura
+    Pessoa pessoa = {0, 0.0, "teste"};
+
+    printf("=== Valores Iniciais ===\n");
+    printf("Idade: %d\n", pessoa.idade);
+    printf("Peso: %.2f\n", pessoa.peso);
+    printf("Nome: %s\n", pessoa.nome);
+
+    // Alterando os campos manualmente
+    pessoa.idade = 10;
+    pessoa.peso = 99.99;
+    strcpy(pessoa.nome, "texto");
+
+    printf("\n=== Valores Alterados no Codigo ===\n");
+    printf("Idade: %d\n", pessoa.idade);
+    printf("Peso: %.2f\n", pessoa.peso);
+    printf("Nome: %s\n", pessoa.nome);
+
+    // Entrada de dados pelo usuário
+    printf("\nDigite a idade: ");
+    scanf("%d", &pessoa.idade);
+
+    printf("Digite o peso: ");
+    scanf("%f", &pessoa.peso);
+
+    printf("Digite o nome: ");
+    scanf("%49s", pessoa.nome);
+
+    printf("\n=== Dados Informados ===\n");
+    printf("Idade: %d\n", pessoa.idade);
+    printf("Peso: %.2f\n", pessoa.peso);
+    printf("Nome: %s\n", pessoa.nome);
+
+    return 0;
+}
