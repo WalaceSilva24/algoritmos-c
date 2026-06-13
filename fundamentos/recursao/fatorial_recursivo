@@ -1,0 +1,52 @@
+/*
+ * Exercício: Fatorial Recursivo
+ * Tema: Recursão
+ *
+ * Objetivo:
+ * Calcular o fatorial de um número utilizando
+ * chamadas recursivas.
+ *
+ * Conceitos praticados:
+ * - Recursão
+ * - Caso base
+ * - Chamadas recursivas
+ * - Retorno de funções
+ *
+ * Exemplo:
+ * 5! = 5 × 4 × 3 × 2 × 1 = 120
+ */
+
+#include <stdio.h>
+
+/*
+ * Calcula o fatorial de um número.
+ *
+ * Caso base:
+ * 0! = 1
+ *
+ * Caso recursivo:
+ * n! = n * (n - 1)!
+ */
+int fatorial(int n) {
+
+    if (n == 0) {
+        return 1;
+    }
+
+    return n * fatorial(n - 1);
+}
+
+int main() {
+
+    int numero;
+    int resultado;
+
+    printf("Digite um numero inteiro: ");
+    scanf("%d", &numero);
+
+    resultado = fatorial(numero);
+
+    printf("\nFatorial de %d = %d\n", numero, resultado);
+
+    return 0;
+}
