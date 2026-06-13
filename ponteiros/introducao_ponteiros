@@ -1,0 +1,33 @@
+/*
+ * Exercício: Introdução a Ponteiros
+ * Tema: Ponteiros
+ *
+ * Objetivo:
+ * Demonstrar como declarar um ponteiro,
+ * armazenar o endereço de uma variável
+ * e acessar seu valor indiretamente.
+ *
+ * Conceitos praticados:
+ * - Ponteiros
+ * - Operador &
+ * - Operador *
+ * - Endereços de memória
+ */
+
+#include <stdio.h>
+
+int main() {
+
+    int numero = 10;
+
+    // Ponteiro que armazena o endereço de "numero"
+    int *ponteiro = &numero;
+
+    printf("Valor da variavel: %d\n", numero);
+    printf("Endereco da variavel: %p\n", (void*)&numero);
+
+    printf("\nValor armazenado no ponteiro: %p\n", (void*)ponteiro);
+    printf("Valor apontado pelo ponteiro: %d\n", *ponteiro);
+
+    return 0;
+}
