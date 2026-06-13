@@ -1,0 +1,236 @@
+/*
+ * Projeto: Diário de Classe
+ *
+ * Descrição:
+ * Sistema de gerenciamento de alunos desenvolvido em C.
+ *
+ * Funcionalidades:
+ * - Cadastro de alunos
+ * - Registro de notas
+ * - Cálculo automático da média
+ * - Verificação de aprovação/reprovação
+ * - Edição de dados
+ * - Listagem de alunos
+ * - Exportação para arquivo TXT
+ * - Carregamento de dados salvos
+ *
+ * Conceitos praticados:
+ * - Structs
+ * - Vetores
+ * - Funções
+ * - Arquivos (FILE)
+ * - Strings
+ * - Modularização
+ * - Menus interativos
+ *
+ * Autor: Seu nome
+ * Ano: 202X
+ */
+
+ #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <locale.h>
+
+#define MAX_ALUNOS 100
+#define TAM_NOME 100
+#define TAM_RESULTADO 20
+
+// Estrutura para armazenar um aluno
+typedef struct {
+    char nome[TAM_NOME];
+    float nota1;
+    float nota2;
+    float media;
+    char resultado[TAM_RESULTADO];
+} Aluno;
+
+// Funções
+void adicionarAluno(Aluno alunos[], int *numAlunos);
+void listarAlunos(const Aluno alunos[], int numAlunos);
+void editarAluno(Aluno alunos[], int numAlunos);
+void salvarRelatorio(const Aluno alunos[], int numAlunos);
+void carregarRelatorio(Aluno alunos[], int *numAlunos);
+
+int main() {
+    setlocale(LC_ALL, "Portuguese");
+    Aluno alunos[MAX_ALUNOS];
+    int numAlunos = 0;
+    int opcao;
+
+    // Carregar dados do arquivo
+    carregarRelatorio(alunos, &numAlunos);
+
+    printf("\n=== Sistema de Registro de Alunos e Notas - Diário de Classe ===\n");
+
+    do {
+        printf("1. Adicionar Aluno\n");
+        printf("2. Listar Alunos\n");
+        printf("3. Editar Aluno\n");
+        printf("4. Salvar Relatório em TXT\n");
+        printf("5. Sair\n");
+        printf("Escolha uma opção: ");
+        scanf("%d", &opcao);
+        getchar(); // Limpa o buffer de entrada
+
+        switch (opcao) {
+            case 1:
+                adicionarAluno(alunos, &numAlunos);
+                break;
+            case 2:
+                listarAlunos(alunos, numAlunos);
+                break;
+            case 3:
+                editarAluno(alunos, numAlunos);
+                break;
+            case 4:
+                salvarRelatorio(alunos, numAlunos);
+                break;
+            case 5:
+                printf("Saindo do programa...\n");
+                break;
+            default:
+                printf("Opção inválida! Tente novamente.\n");
+        }
+    } while (opcao != 5);
+
+    return 0;
+}
+
+// Função para adicionar um novo aluno
+void adicionarAluno(Aluno alunos[], int *numAlunos) {
+    if (*numAlunos < MAX_ALUNOS) {
+        printf("Digite o nome do aluno: ");
+        fgets(alunos[*numAlunos].nome, TAM_NOME, stdin);
+        alunos[*numAlunos].nome[strcspn(alunos[*numAlunos].nome, "\n")] = 0; // Remove o \n
+        printf("Digite a nota 1: ");
+        scanf("%f", &alunos[*numAlunos].nota1);
+        printf("Digite a nota 2: ");
+        scanf("%f", &alunos[*numAlunos].nota2);
+        getchar(); // Limpa o buffer de entrada
+
+        alunos[*numAlunos].media = (alunos[*numAlunos].nota1 + alunos[*numAlunos].nota2) / 2;
+        strcpy(alunos[*numAlunos].resultado, alunos[*numAlunos].media >= 6.0 ? "Aprovado" : "Reprovado");
+
+        (*numAlunos)++;
+        printf("Aluno adicionado com sucesso!\n");
+    } else {
+        printf("Limite de alunos atingido!\n");
+    }
+}
+
+// Função para listar todos os alunos
+void listarAlunos(const Aluno alunos[], int numAlunos) {
+    if (numAlunos == 0) {
+        printf("Nenhum aluno cadastrado.\n");
+        return;
+    }
+
+    printf("\n=== Lista de Alunos ===\n");
+    printf("Nº	Nome		Nota 1	Nota 2	Média	Resultado\n");
+    printf("------------------------------------------------------------\n");
+    for (int i = 0; i < numAlunos; i++) {
+        if (strlen(alunos[i].nome) > 0) { // Evita listar alunos com nome vazio
+            printf("%d	%-10s	%.2f	%.2f	%.2f	%s\n", i + 1, alunos[i].nome, alunos[i].nota1, alunos[i].nota2, alunos[i].media, alunos[i].resultado);
+        }
+    }
+}
+
+// Função para editar um aluno
+void editarAluno(Aluno alunos[], int numAlunos) {
+    if (numAlunos == 0) {
+        printf("Nenhum aluno cadastrado para editar.\n");
+        return;
+    }
+
+    int indice, opcao;
+    listarAlunos(alunos, numAlunos);
+    printf("Digite o número do aluno que deseja editar: ");
+    scanf("%d", &indice);
+    getchar(); // Limpa o buffer de entrada
+
+    if (indice < 1 || indice > numAlunos) {
+        printf("Aluno não encontrado.\n");
+        return;
+    }
+
+    indice--; // Ajusta para índice do array
+
+    printf("O que deseja editar?\n");
+    printf("1. Nome do aluno\n");
+    printf("2. Nota 1\n");
+    printf("3. Nota 2\n");
+    printf("Escolha uma opção: ");
+    scanf("%d", &opcao);
+    getchar(); // Limpa o buffer de entrada
+
+    switch (opcao) {
+        case 1:
+            printf("Digite o novo nome do aluno: ");
+            fgets(alunos[indice].nome, TAM_NOME, stdin);
+            alunos[indice].nome[strcspn(alunos[indice].nome, "\n")] = 0; // Remove o \n
+            break;
+        case 2:
+            printf("Digite a nova nota 1: ");
+            scanf("%f", &alunos[indice].nota1);
+            getchar(); // Limpa o buffer de entrada
+            break;
+        case 3:
+            printf("Digite a nova nota 2: ");
+            scanf("%f", &alunos[indice].nota2);
+            getchar(); // Limpa o buffer de entrada
+            break;
+        default:
+            printf("Opção inválida!\n");
+            return;
+    }
+
+    alunos[indice].media = (alunos[indice].nota1 + alunos[indice].nota2) / 2;
+    strcpy(alunos[indice].resultado, alunos[indice].media >= 6.0 ? "Aprovado" : "Reprovado");
+
+    printf("Aluno editado com sucesso!\n");
+}
+
+// Função para salvar o relatório em um arquivo TXT
+void salvarRelatorio(const Aluno alunos[], int numAlunos) {
+    FILE *arquivo = fopen("Relatorio_Alunos_Notas.txt", "w");
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo para salvar!\n");
+        return;
+    }
+
+    fprintf(arquivo, "=== Relatório de Alunos e Notas ===\n");
+    fprintf(arquivo, "Nº	Nome		Nota 1	Nota 2	Média	Resultado\n");
+    fprintf(arquivo, "------------------------------------------------------------\n");
+    for (int i = 0; i < numAlunos; i++) {
+        if (strlen(alunos[i].nome) > 0) { // Evita salvar alunos com nome vazio
+            fprintf(arquivo, "%d	%-10s	%.2f	%.2f	%.2f	%s\n", i + 1, alunos[i].nome, alunos[i].nota1, alunos[i].nota2, alunos[i].media, alunos[i].resultado);
+        }
+    }
+
+    fclose(arquivo);
+    printf("Relatório salvo com sucesso em 'Relatorio_Alunos_Notas.txt'!\n");
+}
+
+// Função para carregar o relatório de um arquivo TXT
+void carregarRelatorio(Aluno alunos[], int *numAlunos) {
+    FILE *arquivo = fopen("Relatorio_Alunos_Notas.txt", "r");
+    if (arquivo == NULL) {
+        return; // Se o arquivo não existir, não faz nada
+    }
+
+    char linha[200];
+    fgets(linha, sizeof(linha), arquivo); // Ler cabeçalho
+    fgets(linha, sizeof(linha), arquivo); // Ler linha de separação
+
+    *numAlunos = 0; // Resetar o contador de alunos para evitar duplicação
+
+    while (fgets(linha, sizeof(linha), arquivo) != NULL && *numAlunos < MAX_ALUNOS) {
+        sscanf(linha, "%*d	%99[^	]	%f	%f	%f	%19s", alunos[*numAlunos].nome, &alunos[*numAlunos].nota1, &alunos[*numAlunos].nota2, &alunos[*numAlunos].media, alunos[*numAlunos].resultado);
+        if (strlen(alunos[*numAlunos].nome) > 0) { // Evita adicionar alunos com nome vazio
+            (*numAlunos)++;
+        }
+    }
+
+    fclose(arquivo);
+}
