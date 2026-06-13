@@ -1,0 +1,35 @@
+/*
+ * Exercício: Maior Elemento do Vetor
+ * Tema: Vetores
+ *
+ * Objetivo:
+ * Encontrar o maior valor armazenado em um vetor.
+ *
+ * Conceitos praticados:
+ * - Vetores
+ * - Comparações
+ * - Estruturas de repetição
+ * - Busca de valor máximo
+ */
+
+#include <stdio.h>
+
+int main() {
+
+    int vetor[5] = {18, 42, 7, 95, 31};
+
+    // Assume inicialmente que o primeiro elemento é o maior
+    int maior = vetor[0];
+
+    for (int i = 1; i < 5; i++) {
+
+        // Se encontrar um valor maior, atualiza a variável
+        if (vetor[i] > maior) {
+            maior = vetor[i];
+        }
+    }
+
+    printf("Maior elemento do vetor: %d\n", maior);
+
+    return 0;
+}
