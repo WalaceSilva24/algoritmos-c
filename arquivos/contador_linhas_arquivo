@@ -1,0 +1,38 @@
+/*
+ * Exercício: Contador de Linhas
+ * Tema: Arquivos
+ *
+ * Objetivo:
+ * Contar quantas linhas existem em um arquivo texto.
+ *
+ * Conceitos praticados:
+ * - Leitura de arquivos
+ * - fgets()
+ * - Contadores
+ */
+
+#include <stdio.h>
+
+int main() {
+
+    FILE *arquivo;
+    char linha[200];
+    int contador = 0;
+
+    arquivo = fopen("mensagem.txt", "r");
+
+    if (arquivo == NULL) {
+        printf("Arquivo nao encontrado.\n");
+        return 1;
+    }
+
+    while (fgets(linha, sizeof(linha), arquivo) != NULL) {
+        contador++;
+    }
+
+    fclose(arquivo);
+
+    printf("Quantidade de linhas: %d\n", contador);
+
+    return 0;
+}
